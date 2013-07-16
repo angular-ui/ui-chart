@@ -17,7 +17,9 @@
   <script type="text/javascript" src="demo/demo.js"></script>
 </head>
 <body ng-app="ui.chart" ng-controller="DemoCtrl">
-  <button ng-click="drawChart('PieChart', 'DemoChart')">Draw Pie Chart</button>
-  <ui-chart id="DemoChart"></ui-chart>
+  <button ng-click="drawChart('PieChart', 'DemoChart1', 'chart1')">Draw Pie Chart</button>
+  <button ng-click="drawChart('ScatterChart', 'DemoChart2', 'chart2')">Draw Scatter Chart</button>
+  <ui-chart id="DemoChart1"></ui-chart>
+  <ui-chart id="DemoChart2"></ui-chart>
 </body>
 </html>
