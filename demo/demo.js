@@ -56,12 +56,10 @@ angular.module('ui.chart')
     ];
 
     $scope.chart1 = {
-      type: 'PieChart',
       data: $scope.chart1Data
     };
 
     $scope.chart2 = {
-      type: 'ScatterChart',
       data: $scope.chart2Data,
       options: {
         title: 'Age vs. Weight comparison',
@@ -72,7 +70,6 @@ angular.module('ui.chart')
     };
 
     $scope.chart3 = {
-      type: 'ComboChart',
       data: $scope.chart3Data,
       options: {
         title : 'Monthly Coffee Production by Country',
@@ -84,7 +81,6 @@ angular.module('ui.chart')
     };
 
     $scope.chart4 = {
-      type: 'LineChart',
       data: $scope.chart4Data,
       options: {
         title: 'Company Performance'
@@ -92,7 +88,6 @@ angular.module('ui.chart')
     };
 
     $scope.chart5 = {
-      type: 'BarChart',
       data: $scope.chart5Data,
       options: {
         title: 'Company Performance',
@@ -101,7 +96,6 @@ angular.module('ui.chart')
     };
 
     $scope.chart6 = {
-      type: 'ColumnChart',
       data: $scope.chart6Data,
       options: {
         title: 'Company Performance',
