@@ -3,16 +3,35 @@
  */
 angular.module('ui.chart', [])
   .value('uiChartConfig', {})
-  .factory('$chart', ['uiChartConfig', '$rootScope', function (uiChartConfig, $rootScope) {
+  .factory('$dataTable', ['uiChartConfig', function (uiChartConfig) {
+    var dataTables = [];
+    return {
+      convertArrayToTable: function (type, target, data) {
+        for (var i = 0; i < dataTables.length; i++) {
+          if ((dataTables[i].type === type) && (dataTables[i].target === target) && (dataTables[i].data = google.visualization.arrayToDataTable(data))) {
+            return dataTables[i].data;
+          }
+        }
+
+        var table = google.visualization.arrayToDataTable(data);
+
+        dataTables.push({
+          type: type,
+          target: target,
+          data: table
+        });
+
+        return table;
+      }
+    }
+  }])
+  .factory('$chart', ['uiChartConfig', '$rootScope', '$dataTable', function (uiChartConfig, $rootScope, $dataTable) {
     var charts = [];
     return {
-      convertArrayToTable: function (type, data) {
-        return google.visualization.arrayToDataTable(data);
-      },
       drawChart: function (chart) {
         var type = chart.type,
           target = chart.target,
-          data = this.convertArrayToTable(type, chart.data),
+          data = $dataTable.convertArrayToTable(type, target, chart.data),
           options = chart.options;
 
         $rootScope.$broadcast('$draw:chart', [type, target, data, options]);
