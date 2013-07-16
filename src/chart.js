@@ -7,9 +7,7 @@ angular.module('ui.chart', [])
     var charts = [];
     return {
       convertArrayToTable: function (type, data) {
-        if (type === 'PieChart') {
-          return google.visualization.arrayToDataTable(data);
-        }
+        return google.visualization.arrayToDataTable(data);
       },
       drawChart: function (chart) {
         var type = chart.type,
