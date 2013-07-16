@@ -49,7 +49,7 @@ Apply the directive to your div elements as an element, attribute, or class:
 
 All of the chart options can be passed through the directive.  The chart type must be specified in the `type` property.
 
-    myAppModule.controller('MyController', function ($scope, $uiChart) {
+    myAppModule.controller('MyController', function ($scope, $chart) {
       $scope.chartOptions = {
         type: 'PieChart',
         data: $chart.convertArrayToTable(data), //data = formatted data for graph
