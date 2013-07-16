@@ -76,6 +76,8 @@ In addition, the data property must contain the data in the array format for the
       ['Sleep',    7]
     ]
 
+Once the chart has been drawn, you may directly retrieve the object through the `$chart` service's `getById` method, passing in the value of the `id` attribute of the chart element you want to manipulate.  This will directly give you access to the class instance of `google.visualization[chartType](elem)` so that you may manipulate it to your heart's content.
+
 ## Options
 
 All of the chart options can be passed through the directive.  The chart type must be specified in the `type` property.
