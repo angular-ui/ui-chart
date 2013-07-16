@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>AngularUI - Google Chart Demo</title>
+  <base href=".."></base>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('visualization', '1.0', {'packages':['corechart']});
+  </script>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="src/chart.js"></script>
+  <script type="text/javascript" src="demo/demo.js"></script>
+</head>
+<body ng-app="ui.chart" ng-controller="DemoCtrl">
+  <button ng-click="drawChart('PieChart', 'DemoChart')">Draw Pie Chart</button>
+  <ui-chart id="DemoChart"></ui-chart>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "angular-ui-bower",
+  "version": "0.0.0",
+  "description": "This directive allows you to TinyMCE in your form.",
+  "author": "https://github.com/angular-ui/ui-chart/graphs/contributors",
+  "license": "MIT",
+  "homepage": "http://angular-ui.github.com",
+  "main": "./src/chart.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test*",
+    "demo*",
+    "gruntFile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.x"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.x"
+  }
+}
