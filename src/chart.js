@@ -19,7 +19,7 @@ angular.module('ui.chart', [])
 
         $rootScope.$broadcast('$draw:chart', [type, target, data, options]);
       },
-      setChart: function (obj) {
+      set: function (obj) {
         for (var i = 0; i < charts.length; i++) {
           if (charts[i].pd.id === obj.pd.id) {
             charts[i] = obj;
@@ -28,10 +28,23 @@ angular.module('ui.chart', [])
         }
 
         charts.push(obj);
+      },
+      get: function (id, type, elem) {
+        for (var i = 0; i < charts.length; i++) {
+          if (charts[i].pd.id === id) {
+            return charts[i];
+          }
+        }
+
+        var newChart = new google.visualization[type](elem);
+
+        charts.push(newChart);
+
+        return newChart;
       }
-    }
+    };
   }])
-  .directive('uiChart', ['uiChartConfig', function (uiChartConfig) {
+  .directive('uiChart', ['uiChartConfig', '$chart', function (uiChartConfig, $chart) {
     var generatedIds = 0;
     return {
       replace: true,
@@ -51,7 +64,8 @@ angular.module('ui.chart', [])
             options = obj[3];
 
           if (target === attrs.id) {
-            chart = new google.visualization[type](elem[0]);
+            chart = $chart.get(target, type, elem[0]);
+
             chart.draw(data, options);
           }
         });
