@@ -43,7 +43,7 @@ Apply the directive to your div elements as an element, attribute, or class:
 
     <ui-chart id="Chart1"></ui-chart>
     <div ui-chart id="Chart2"></div>
-    <div id="Chart3" class="ui-chart"></div>
+    <div class="ui-chart" id="Chart3"></div>
 
 ## Options
 
