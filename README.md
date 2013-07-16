@@ -39,9 +39,11 @@ Add the chart module as a dependency to your application module:
 
     var myAppModule = angular.module('MyApp', ['ui.chart'])
 
-Apply the directive to your div elements:
+Apply the directive to your div elements as an element, attribute, or class:
 
-    <div ui-chart options="chartOptions"></div>
+    <ui-chart id="Chart1"></ui-chart>
+    <div ui-chart id="Chart2"></div>
+    <div id="Chart3" class="ui-chart"></div>
 
 ## Options
 
@@ -50,7 +52,7 @@ All of the chart options can be passed through the directive.  The chart type mu
     myAppModule.controller('MyController', function ($scope, $uiChart) {
       $scope.chartOptions = {
         type: 'PieChart',
-        data: $uiChart.dataTable(data), //data = formatted data for graph
+        data: $chart.convertArrayToTable(data), //data = formatted data for graph
         options: {
           title: 'My Daily Activities',
           legend: {
