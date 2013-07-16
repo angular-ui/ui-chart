@@ -52,7 +52,7 @@ Apply the directive to your div elements as an element, attribute, or class:
     <div ui-chart id="Chart2"></div>
     <div class="ui-chart" id="Chart3"></div>
 
-In your controller, specify the `$chart` service as a dependency and pass along the chart type, formatted data, and 
+In your controller, specify the `$chart` service as a dependency and pass along the chart type, formatted data, and call `$chart.draw` method, passing in your chart model.
 
     myAppModule.controller('MyController', function ($scope, $chart) {
       $scope.chart = {
@@ -62,6 +62,19 @@ In your controller, specify the `$chart` service as a dependency and pass along 
 
       $chart.draw($scope.chart);
     });
+
+The type property of the chart object has to contain the name of the chart class to call as a string - for example, note that the type property in the example above matches the class object called in the example source code [here](https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart).
+
+In addition, the data property must contain the data in the array format for the particular graph.  For that pie chart example above, the data property might look like this:
+
+    [
+      ['Task', 'Hours per Day'],
+      ['Work',     11],
+      ['Eat',      2],
+      ['Commute',  2],
+      ['Watch TV', 2],
+      ['Sleep',    7]
+    ]
 
 ## Options
 
