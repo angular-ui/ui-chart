@@ -45,14 +45,25 @@ Apply the directive to your div elements as an element, attribute, or class:
     <div ui-chart id="Chart2"></div>
     <div class="ui-chart" id="Chart3"></div>
 
+In your controller, specify the `$chart` service as a dependency and pass along the chart type, formatted data, and 
+
+    myAppModule.controller('MyController', function ($scope, $chart) {
+      $scope.chart = {
+        type: 'PieChart',
+        data: data //data for graph in array
+      };
+
+      $chart.draw($scope.chart);
+    });
+
 ## Options
 
 All of the chart options can be passed through the directive.  The chart type must be specified in the `type` property.
 
     myAppModule.controller('MyController', function ($scope, $chart) {
-      $scope.chartOptions = {
+      $scope.chart = {
         type: 'PieChart',
-        data: $chart.convertArrayToTable(data), //data = formatted data for graph
+        data: data, //data for graph in array
         options: {
           title: 'My Daily Activities',
           legend: {
