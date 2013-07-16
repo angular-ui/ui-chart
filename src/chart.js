@@ -41,6 +41,15 @@ angular.module('ui.chart', [])
         charts.push(newChart);
 
         return newChart;
+      },
+      getById: function (id) {
+        for (var i = 0; i < charts.length; i++) {
+          if (charts[i].pd.id === id) {
+            return charts[i];
+          }
+        }
+
+        return false;
       }
     };
   }])
