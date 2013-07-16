@@ -4,6 +4,7 @@
 angular.module('ui.chart', [])
   .value('uiChartConfig', {})
   .factory('$chart', ['uiChartConfig', '$rootScope', function (uiChartConfig, $rootScope) {
+    var charts = [];
     return {
       convertArrayToTable: function (type, data) {
         if (type === 'PieChart') {
@@ -13,10 +14,20 @@ angular.module('ui.chart', [])
       drawChart: function (chart) {
         var type = chart.type,
           target = chart.target,
-          data = chart.data,
+          data = this.convertArrayToTable(type, chart.data),
           options = chart.options;
 
         $rootScope.$broadcast('$draw:chart', [type, target, data, options]);
+      },
+      setChart: function (obj) {
+        for (var i = 0; i < charts.length; i++) {
+          if (charts[i].pd.id === obj.pd.id) {
+            charts[i] = obj;
+            return;
+          }
+        }
+
+        charts.push(obj);
       }
     }
   }])

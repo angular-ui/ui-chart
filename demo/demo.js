@@ -14,7 +14,7 @@ angular.module('ui.chart')
 
     $scope.chartOptions = {
       type: 'PieChart',
-      data: $chart.convertArrayToTable('PieChart', $scope.chartData)
+      data: $scope.chartData
     };
 
     $scope.drawChart = function (type, target) {
