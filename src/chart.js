@@ -6,9 +6,9 @@ angular.module('ui.chart', [])
   .factory('$dataTable', ['uiChartConfig', function (uiChartConfig) {
     var dataTables = [];
     return {
-      convertArrayToTable: function (type, target, data) {
+      convertArrayToTable: function (target, type, data) {
         for (var i = 0; i < dataTables.length; i++) {
-          if ((dataTables[i].type === type) && (dataTables[i].target === target) && (dataTables[i].data = google.visualization.arrayToDataTable(data))) {
+          if (dataTables[i].target === target) {
             return dataTables[i].data;
           }
         }

@@ -1,6 +1,6 @@
 describe('uiChart', function () {
 
-  var scope, $compile, element1, element2;
+  var scope, $compile, $dataTable, element1, element2;
 
   beforeEach(function () {
     runs(function () {
@@ -13,30 +13,29 @@ describe('uiChart', function () {
   });
 
   beforeEach(module('ui.chart'));
-  beforeEach(inject(function (_$rootScope_, _$compile_) {
+  beforeEach(inject(function (_$rootScope_, _$compile_, _$dataTable_) {
     scope = _$rootScope_.$new();
     $compile = _$compile_;
+    $dataTable = _$dataTable_;
   }));
 
   afterEach(function () {
     element1 = undefined;
     element2 = undefined;
+    $dataTable = undefined;
 
     scope.$destroy();
   });
 
   //asynchronous compilation of elements
   function compile() {
-    runs(function () {
-      element1 = $compile('<ui-chart id="TestChart1"></ui-chart>')(scope);
-      element2 = $compile('<ui-chart id="TestChart2"></ui-chart>')(scope);
-    });
-    waits(1);
+    element1 = $compile('<ui-chart id="TestChart1"></ui-chart>')(scope)[0];
+    element2 = $compile('<ui-chart id="TestChart2"></ui-chart>')(scope)[0];
   }
 
   describe('$dataTable', function () {
-    it('should return the formatted table', inject(function ($dataTable) {
-      spyOn($dataTable, 'convertArrayToTable');
+    it('should return the formatted table', function () {
+      spyOn($dataTable, 'convertArrayToTable').andCallThrough();
       compile();
 
       var data = [
@@ -45,11 +44,12 @@ describe('uiChart', function () {
         [0, 0]
       ];
 
-      var dataTable = $dataTable.convertArrayToTable('PieChart', element1, data);
+      var dataTable;
 
-      expect($dataTable.convertArrayToTable).toHaveBeenCalled();
-      //expect(dataTable).toBeDefined();
-      //expect(dataTable.H[0].label).toBe('Foo');
-    }));
+      dataTable = $dataTable.convertArrayToTable('PieChart', element1, data);
+
+      expect(dataTable).toBeDefined();
+      expect(dataTable.H[0].label).toBe('Foo');
+    });
   });
 });

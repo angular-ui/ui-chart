@@ -8,6 +8,5 @@ files = [
   'test/googlecharts.js',
   'test/*.spec.js'
 ];
-singleRun = false;
-autoWatch = true;
+singleRun = true;
 browsers = [ 'Chrome' ];
