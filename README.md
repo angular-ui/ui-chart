@@ -8,9 +8,6 @@ This directive allows you to add a [Google Chart](https://developers.google.com/
 
 # TODOs
 
-- Implement a passthrough for directly calling the dataTable api
-- Implement shorthand methods for manipulating the data
-- Write tests
 - Set up TravisCI
 
 # Testing
