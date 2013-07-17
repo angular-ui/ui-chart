@@ -55,7 +55,7 @@ describe('uiChart', function () {
   });
 
   describe('$chart', function () {
-    describe('draw', function () {
+    describe('$chart.draw', function () {
       it('should broadcast $draw:chart event', inject(function ($chart) {
         var trigger = false,
           chart = {
@@ -78,6 +78,85 @@ describe('uiChart', function () {
 
         expect($chart.draw).toHaveBeenCalled();
         expect(trigger).toBe(true);
+      }));
+    });
+
+    describe('$chart.get', function () {
+      it('should create a new chart', inject(function ($chart) {
+        spyOn($chart, 'get').andCallThrough();
+        compile();
+        
+        var chart = $chart.get('TestChart1', 'PieChart', element1);
+
+        expect($chart.get).toHaveBeenCalled();
+        expect(chart.$g).toBe('pie');
+        expect(chart.pd.id).toBe('TestChart1');
+      }));
+
+      it('should retrieve existing chart', inject(function ($chart) {
+        compile();
+
+        var chart1 = $chart.get('TestChart1', 'PieChart', element1);
+
+        var chart2 = $chart.get('TestChart1');
+
+        expect(chart2).toEqual(chart1);
+      }));
+
+      it('should not match a prior chart with different id and create a new chart', inject(function ($chart) {
+        compile();
+
+        var chart1 = $chart.get('TestChart1', 'PieChart', element1);
+
+        var chart2 = $chart.get('TestChart2', 'LineChart', element2);
+
+        expect(chart2).not.toEqual(chart1);
+        expect(chart2.$g).not.toBe(chart1.$g);
+        expect(chart2.pd.id).not.toBe(chart1.pd.id);
+      }));
+    });
+
+    describe('$chart.set', function () {
+      it('should return false on no matches', inject(function ($chart) {
+        spyOn($chart, 'set').andCallThrough();
+        var chart = $chart.set();
+
+        expect($chart.set).toHaveBeenCalled();
+        expect(chart).toBe(false);
+      }));
+
+      it('should match a prior chart and override its chart type', inject(function ($chart) {
+        compile();
+
+        var chart1 = $chart.get('TestChart1', 'PieChart', element1), chart2;
+
+        chart2 = new google.visualization.LineChart(element1);
+
+        chart2 = $chart.set(chart2);
+
+        expect(chart2).not.toEqual(chart1);
+        expect(chart2.$g).not.toBe(chart1.$g);
+        expect(chart2.pd.id).toBe(chart1.pd.id);
+      }));
+    });
+
+    describe('$chart.getById', function () {
+      it('should return false on no matches', inject(function ($chart) {
+        spyOn($chart, 'getById').andCallThrough();
+        var result = $chart.getById();
+
+        expect($chart.getById).toHaveBeenCalled();
+        expect(result).toBe(false);
+      }));
+
+      it('should match a prior chart and retrieve it', inject(function ($chart) {
+        compile();
+
+        var chart1 = $chart.get('TestChart1', 'PieChart', element1), chart2;
+
+        chart2 = $chart.getById('TestChart1');
+
+        expect(chart1).toEqual(chart2);
       }));
     });
   });

@@ -2,8 +2,7 @@
  * Binds a Google Chart iframe to <div> elements.
  */
 angular.module('ui.chart', [])
-  .value('uiChartConfig', {})
-  .factory('$dataTable', ['uiChartConfig', function (uiChartConfig) {
+  .factory('$dataTable', function () {
     var dataTables = [];
     return {
       convertArrayToTable: function (target, type, data) {
@@ -24,8 +23,8 @@ angular.module('ui.chart', [])
         return table;
       }
     };
-  }])
-  .factory('$chart', ['uiChartConfig', '$rootScope', '$dataTable', function (uiChartConfig, $rootScope, $dataTable) {
+  })
+  .factory('$chart', ['$rootScope', '$dataTable', function ($rootScope, $dataTable) {
     var charts = [];
     return {
       draw: function (chart) {
@@ -40,11 +39,11 @@ angular.module('ui.chart', [])
         for (var i = 0; i < charts.length; i++) {
           if (charts[i].pd.id === obj.pd.id) {
             charts[i] = obj;
-            return;
+            return charts[i];
           }
         }
 
-        charts.push(obj);
+        return false;
       },
       get: function (id, type, elem) {
         for (var i = 0; i < charts.length; i++) {
@@ -70,7 +69,7 @@ angular.module('ui.chart', [])
       }
     };
   }])
-  .directive('uiChart', ['uiChartConfig', '$chart', function (uiChartConfig, $chart) {
+  .directive('uiChart', ['$chart', function ($chart) {
     var generatedIds = 0;
     return {
       replace: true,
