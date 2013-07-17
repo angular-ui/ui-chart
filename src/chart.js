@@ -28,7 +28,7 @@ angular.module('ui.chart', [])
   .factory('$chart', ['uiChartConfig', '$rootScope', '$dataTable', function (uiChartConfig, $rootScope, $dataTable) {
     var charts = [];
     return {
-      drawChart: function (chart) {
+      draw: function (chart) {
         var type = chart.type,
           target = chart.target,
           data = $dataTable.convertArrayToTable(type, target, chart.data),

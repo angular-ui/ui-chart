@@ -1,6 +1,6 @@
 describe('uiChart', function () {
 
-  var scope, $compile, $dataTable, element1, element2;
+  var scope, $compile, element1, element2;
 
   beforeEach(function () {
     runs(function () {
@@ -13,16 +13,14 @@ describe('uiChart', function () {
   });
 
   beforeEach(module('ui.chart'));
-  beforeEach(inject(function (_$rootScope_, _$compile_, _$dataTable_) {
+  beforeEach(inject(function (_$rootScope_, _$compile_) {
     scope = _$rootScope_.$new();
     $compile = _$compile_;
-    $dataTable = _$dataTable_;
   }));
 
   afterEach(function () {
     element1 = undefined;
     element2 = undefined;
-    $dataTable = undefined;
 
     scope.$destroy();
   });
@@ -34,22 +32,53 @@ describe('uiChart', function () {
   }
 
   describe('$dataTable', function () {
-    it('should return the formatted table', function () {
-      spyOn($dataTable, 'convertArrayToTable').andCallThrough();
-      compile();
+    describe('convertArrayToTable', function () {
+      it('should return the formatted table', inject(function ($dataTable) {
+        spyOn($dataTable, 'convertArrayToTable').andCallThrough();
+        compile();
 
-      var data = [
-        ['Foo', 'Bar'],
-        [0, 0],
-        [0, 0]
-      ];
+        var data = [
+          ['Foo', 'Bar'],
+          [0, 0],
+          [0, 0]
+        ];
 
-      var dataTable;
+        var dataTable;
 
-      dataTable = $dataTable.convertArrayToTable('PieChart', element1, data);
+        dataTable = $dataTable.convertArrayToTable('PieChart', element1, data);
 
-      expect(dataTable).toBeDefined();
-      expect(dataTable.H[0].label).toBe('Foo');
+        expect($dataTable.convertArrayToTable).toHaveBeenCalled();
+        expect(dataTable).toBeDefined();
+        expect(dataTable.H[0].label).toBe('Foo');
+      }));
+    });
+  });
+
+  describe('$chart', function () {
+    describe('draw', function () {
+      it('should broadcast $draw:chart event', inject(function ($chart) {
+        var trigger = false,
+          chart = {
+            type: 'PieChart',
+            target: '#TestChart1',
+            data: [
+              ['Foo', 'Bar'],
+              [0, 0],
+              [0, 0]
+            ]
+          };
+
+        scope.$on('$draw:chart', function () {
+          trigger = true;
+        });
+
+        spyOn($chart, 'draw').andCallThrough();
+
+        $chart.draw(chart);
+
+        expect($chart.draw).toHaveBeenCalled();
+        expect(trigger).toBe(true);
+      }));
     });
   });
 });

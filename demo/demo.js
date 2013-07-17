@@ -104,6 +104,6 @@ angular.module('ui.chart')
     $scope.drawChart = function (type, target, chart) {
       $scope[chart].type = type;
       $scope[chart].target = target;
-      $chart.drawChart($scope[chart]);
+      $chart.draw($scope[chart]);
     };
   });
