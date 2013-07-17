@@ -23,7 +23,7 @@ angular.module('ui.chart', [])
 
         return table;
       }
-    }
+    };
   }])
   .factory('$chart', ['uiChartConfig', '$rootScope', '$dataTable', function (uiChartConfig, $rootScope, $dataTable) {
     var charts = [];
