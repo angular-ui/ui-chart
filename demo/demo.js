@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('ui.chart')
   .controller('DemoCtrl', function ($scope, $chart) {
     $scope.chart1Data = [
