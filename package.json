@@ -1,6 +1,6 @@
 {
   "name": "angular-ui-chart",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "This directive allows you to add a Google Chart to application.",
   "author": "https://github.com/angular-ui/ui-chart/graphs/contributors",
   "license": "MIT",
