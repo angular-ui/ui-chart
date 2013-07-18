@@ -54,7 +54,7 @@ describe('uiChart Directive', function  () {
   it('should retrieve jqPlot options from scope', function () {
     spyOn($, 'jqplot');
     compile('data', 'options="myOpts"');
-    scope.data = [1,2,3];
+    scope.data = [[1,2,3]];
     scope.myOpts = {foo: 'bar'};
     scope.$digest();
 
@@ -65,15 +65,50 @@ describe('uiChart Directive', function  () {
     );
   });
 
+  it('should throw an exception if options are not an object', function () {
+    expect(function () {
+      compile('data', 'options="myOptsThatDontExistWhoops"');
+      scope.data = [[1,2,3]];
+      scope.$digest();
+    }).toThrow('Invalid ui.chart options attribute');
+  });
+
   it('should rerender the plot if options in scope change', function () {
-    //TODO
+    spyOn($, 'jqplot');
+    compile('data', 'options="myOpts"');
+    scope.data = [[1,2,3]];
+    scope.myOpts = {
+      hello: 'world'
+    };
+    scope.$digest();
+
+    expect($.jqplot).toHaveBeenCalledWith(
+      jasmine.any(String),
+      scope.data,
+      {
+        hello: 'world'
+      }
+    );
+
+    scope.myOpts = {
+      foo: 'bar'
+    };
+    scope.$digest();
+
+    expect($.jqplot).toHaveBeenCalledWith(
+      jasmine.any(String),
+      scope.data,
+      {
+        foo: 'bar'
+      }
+    );
   });
 
   it('should accept renderer from directive attribute', function () {
     spyOn($, 'jqplot');
     $.jqplot.SomeWeirdRenderer = 'Hello!';
     compile('data', 'renderer="someWeird"');
-    scope.data = [1,2,3];
+    scope.data = [[1,2,3]];
     scope.$digest();
 
     expect($.jqplot).toHaveBeenCalledWith(
@@ -91,7 +126,7 @@ describe('uiChart Directive', function  () {
     spyOn($, 'jqplot');
     $.jqplot.SomeWeirdRenderer = 'Goodbye!';
     compile('data', 'renderer="someWeird" options="myOpts"');
-    scope.data = [1,2,3];
+    scope.data = [[1,2,3]];
     scope.myOpts = {
       seriesDefaults: {
         renderer: 'Aloha!',
@@ -126,13 +161,18 @@ describe('uiChart Directive', function  () {
 
   it('should remove the element contents if data becomes something not an array', function () {
     compile('data');
-    element.html('foo');
+    scope.data = [
+      [1,2,3],
+      [4,5,6]
+    ];
+    scope.$digest();
 
-    expect(element.html()).toBe('foo');
+    expect(element[0].children.length).toBeGreaterThan(0);
 
     scope.data = null;
     scope.$digest();
 
     expect(element.html()).toBe('');
+    expect(element[0].children.length).toBe(0);
   });
 });
