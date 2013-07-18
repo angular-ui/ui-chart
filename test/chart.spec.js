@@ -53,7 +53,7 @@ describe('uiChart Directive', function  () {
 
   it('should retrieve jqPlot options from scope', function () {
     spyOn($, 'jqplot');
-    compile('data', 'options="myOpts"')
+    compile('data', 'options="myOpts"');
     scope.data = [1,2,3];
     scope.myOpts = {foo: 'bar'};
     scope.$digest();

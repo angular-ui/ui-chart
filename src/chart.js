@@ -20,7 +20,7 @@ angular.module('ui.chart', [])
               opts.seriesDefaults = {};
             }
             var r = attrs.renderer;
-            var r = r.charAt(0).toUpperCase() + r.slice(1);
+            r = r.charAt(0).toUpperCase() + r.slice(1);
             opts.seriesDefaults.renderer = $.jqplot[r + 'Renderer'];
           }
 
