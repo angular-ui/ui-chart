@@ -50,7 +50,7 @@ Your data to pass to `$.jqplot` will be the evaluated value of the `ui-chart` at
 
 # Options
 
-This plugin supports usage of any option present for a chart in jqplot.
+This plugin supports usage of any option present for a chart in jqplot.  This value will be provided by the evaluated value in scope on the `chart-options` attribute.
 
     <ui-chart="data" chart-options="chartOptions"></ui-chart>
 
