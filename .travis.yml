@@ -11,7 +11,7 @@ script: grunt
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-- npm install -g bower grunt-cli
+- npm install -g grunt-cli https://github.com/bower/bower.git
 - npm install
 - bower install
 env:
