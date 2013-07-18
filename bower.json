@@ -1,7 +1,7 @@
 {
-  "name": "angular-ui-bower",
+  "name": "angular-ui-chart",
   "version": "0.0.1",
-  "description": "This directive allows you to TinyMCE in your form.",
+  "description": "This directive allows you to add a Google Chart to application.",
   "author": "https://github.com/angular-ui/ui-chart/graphs/contributors",
   "license": "MIT",
   "homepage": "http://angular-ui.github.com",
@@ -19,6 +19,7 @@
     "angular": "~1.x"
   },
   "devDependencies": {
-    "angular-mocks": "~1.x"
+    "angular-mocks": "~1.x",
+    "angular-ui-docs": "https://github.com/angular-ui/angular-ui-docs/archive/a18c9a4b236b88151d630ac78c0ecbacc260b961.zip"
   }
 }
