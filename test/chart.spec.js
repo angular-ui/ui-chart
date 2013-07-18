@@ -4,12 +4,16 @@ describe('uiChart', function () {
 
   beforeEach(function () {
     runs(function () {
-      google.load('visualization', '1.0', {'packages':['corechart']});
+      google.load('visualization', '1.0', {
+        'packages': ['corechart'],
+        'callback': function () {}
+        //callback is never called, but must be present for dynamic loading
+      });
     });
 
     waitsFor(function () {
       return !angular.isUndefined(google.visualization.PieChart);
-    });
+    }, 'Google visualization api to load');
   });
 
   beforeEach(module('ui.chart'));
