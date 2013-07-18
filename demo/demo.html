@@ -6,28 +6,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>AngularUI - Google Chart Demo</title>
+  <title>AngularUI - jqPlot Demo</title>
   <base href=".."></base>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-    google.load('visualization', '1.0', {'packages':['corechart']});
-  </script>
+  <script type="text/javascript" src="components/jquery/jquery.js"></script>
+  <script type="text/javascript" src="components/jqplot/jquery.jqplot.js"></script>
   <script type="text/javascript" src="components/angular/angular.js"></script>
-  <script type="text/javascript" src="src/chart.js"></script>
+  <script type="text/javascript" src="src/jqplot.js"></script>
   <script type="text/javascript" src="demo/demo.js"></script>
 </head>
-<body ng-app="ui.chart" ng-controller="DemoCtrl">
-  <button ng-click="drawChart('PieChart', 'DemoChart1', 'chart1')">Draw Pie Chart</button>
-  <button ng-click="drawChart('ScatterChart', 'DemoChart2', 'chart2')">Draw Scatter Chart</button>
-  <button ng-click="drawChart('ComboChart', 'DemoChart3', 'chart3')">Draw Combo Chart</button>
-  <button ng-click="drawChart('LineChart', 'DemoChart4', 'chart4')">Draw Line Chart</button>
-  <button ng-click="drawChart('BarChart', 'DemoChart5', 'chart5')">Draw Bar Chart</button>
-  <button ng-click="drawChart('ColumnChart', 'DemoChart6', 'chart6')">Draw Column Chart</button>
-  <ui-chart id="DemoChart1"></ui-chart>
-  <ui-chart id="DemoChart2"></ui-chart>
-  <ui-chart id="DemoChart3"></ui-chart>
-  <ui-chart id="DemoChart4"></ui-chart>
-  <ui-chart id="DemoChart5"></ui-chart>
-  <ui-chart id="DemoChart6"></ui-chart>
+<body ng-app="ui.jqplot" ng-controller="DemoCtrl">
 </body>
 </html>

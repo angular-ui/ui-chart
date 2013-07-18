@@ -1,11 +1,11 @@
 {
-  "name": "angular-ui-chart",
+  "name": "angular-ui-jqplot",
   "version": "0.0.1",
-  "description": "This directive allows you to add a Google Chart to application.",
-  "author": "https://github.com/angular-ui/ui-chart/graphs/contributors",
+  "description": "This directive allows you to add jqPlot graphs to your application.",
+  "author": "https://github.com/angular-ui/ui-jqplot/graphs/contributors",
   "license": "MIT",
   "homepage": "http://angular-ui.github.com",
-  "main": "./src/chart.js",
+  "main": "./src/jqplot.js",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -17,7 +17,9 @@
     "package.json"
   ],
   "dependencies": {
-    "angular": "~1.x"
+    "angular": "~1.x",
+    "jquery": "~2.x",
+    "jqplot": "https://bitbucket.org/cleonello/jqplot/downloads/jquery.jqplot.1.0.8r1250.tar.gz"
   },
   "devDependencies": {
     "angular-mocks": "~1.x",
