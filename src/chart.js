@@ -3,9 +3,11 @@ angular.module('ui.chart', [])
     return {
       restrict: 'EACM',
       template: '<div></div>',
+      replace: true,
       link: function (scope, elem, attrs) {
         scope.$watch(attrs.uiChart, function (data) {
-          if (angular.isUndefined(data)) {
+          if (!angular.isArray(data)) {
+            elem.html('');
             return;
           }
 

@@ -9,7 +9,7 @@ describe('uiChart Directive', function  () {
   }));
 
   afterEach(function () {
-    element = undefined;
+    element.remove();
     scope.$destroy();
   });
 
@@ -20,7 +20,7 @@ describe('uiChart Directive', function  () {
       options = '';
     }
 
-    element = $compile('<div id="myPlot' + elemId + '" ui-chart="' + dataSource + '" ' + options + '></div>')(scope);
+    element = $compile('<div id="myPlot' + elemId + '" ui-chart="' + dataSource + '" ' + options + '></div>')(scope).appendTo($('body'));
     ++elemId;
   }
 
@@ -38,6 +38,17 @@ describe('uiChart Directive', function  () {
       scope.data,
       {}
     );
+  });
+
+   it('should allow jqPlot to insert chart elements', function () {
+    compile('data');
+    scope.data = [
+      [1,2,3],
+      [4,5,6]
+    ];
+    scope.$digest();
+
+    expect(element[0].children.length).toBeGreaterThan(0);
   });
 
   it('should retrieve jqPlot options from scope', function () {
@@ -103,11 +114,25 @@ describe('uiChart Directive', function  () {
     );
   });
 
-  it('should leave the element empty if no data is set', function () {
-    // TODO
+  it('should leave the element empty if data is not an array', function () {
+    spyOn($, 'jqplot').andCallThrough();
+    compile('data');
+    scope.data = null;
+    scope.$digest();
+
+    expect(element[0].children.length).toBe(0);
+    expect($.jqplot).not.toHaveBeenCalled();
   });
 
-  it('should remove the element contents if data goes away', function () {
-    // TODO
+  it('should remove the element contents if data becomes something not an array', function () {
+    compile('data');
+    element.html('foo');
+
+    expect(element.html()).toBe('foo');
+
+    scope.data = null;
+    scope.$digest();
+
+    expect(element.html()).toBe('');
   });
 });
