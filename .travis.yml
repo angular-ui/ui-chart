@@ -13,3 +13,6 @@ before_install:
   - npm install -g bower grunt-cli
   - npm install
   - bower install
+env:
+  global:
+  - REPO="git@github.com:angular-ui/ui-chart.git"
