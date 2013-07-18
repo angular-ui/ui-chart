@@ -16,6 +16,9 @@
   <script type="text/javascript" src="demo/demo.js"></script>
 </head>
 <body ng-app="myChartingApp" ng-controller="DemoCtrl">
-  <div ui-chart="someData()" options="chartOptions"/>
+  <div
+    ui-chart="someData()"
+    renderer="pie"
+  />
 </body>
 </html>

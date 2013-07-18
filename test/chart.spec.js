@@ -56,5 +56,27 @@ describe('uiChart Directive', function  () {
 
   it('should rerender the plot if options in scope change', function() {
     //TODO
+  });
+
+  it('should accept renderer from directive attribute', function() {
+    spyOn($, 'jqplot');
+    $.jqplot.SomeWeirdRenderer = 'Hello!';
+    compile('data', 'renderer="someWeird"');
+    scope.data = [1,2,3];
+    scope.$digest();
+
+    expect($.jqplot).toHaveBeenCalledWith(
+      jasmine.any(String),
+      scope.data,
+      {
+        seriesDefaults: {
+          renderer: 'Hello!'
+        }
+      }
+    );
+  });
+
+  it('should override scope options renderer with directive attribute renderer', function() {
+    // TODO
   })
 });
