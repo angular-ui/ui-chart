@@ -1,4 +1,4 @@
-# ui-chart directive
+# ui-chart directive [![Build Status](https://travis-ci.org/angular-ui/ui-chart.png?branch=master)](https://travis-ci.org/angular-ui/ui-chart)
 
 This directive allows you to add a [Google Chart](https://developers.google.com/chart/) to your application.
 
