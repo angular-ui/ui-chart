@@ -10,7 +10,12 @@ angular.module('ui.chart', [])
             return;
           }
 
-          elem.jqplot(data);
+          var opts = {};
+          if (!angular.isUndefined(attrs.options)) {
+            opts = scope.$eval(attrs.options);
+          }
+
+          elem.jqplot(data, opts);
         }, true);
       }
     };
