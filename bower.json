@@ -1,11 +1,11 @@
 {
-  "name": "angular-ui-jqplot",
+  "name": "angular-ui-chart",
   "version": "0.0.1",
-  "description": "This directive allows you to add jqPlot graphs to your application.",
-  "author": "https://github.com/angular-ui/ui-jqplot/graphs/contributors",
+  "description": "Add a jqPlot chart to your Angular application.",
+  "author": "https://github.com/angular-ui/ui-chart/graphs/contributors",
   "license": "MIT",
   "homepage": "http://angular-ui.github.com",
-  "main": "./src/jqplot.js",
+  "main": "./src/chart.js",
   "ignore": [
     "**/.*",
     "node_modules",
