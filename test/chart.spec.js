@@ -40,7 +40,7 @@ describe('uiChart Directive', function  () {
     );
   });
 
-  it('should retrieve jqPlot options from scope', function() {
+  it('should retrieve jqPlot options from scope', function () {
     spyOn($, 'jqplot');
     compile('data', 'options="myOpts"')
     scope.data = [1,2,3];
@@ -54,11 +54,11 @@ describe('uiChart Directive', function  () {
     );
   });
 
-  it('should rerender the plot if options in scope change', function() {
+  it('should rerender the plot if options in scope change', function () {
     //TODO
   });
 
-  it('should accept renderer from directive attribute', function() {
+  it('should accept renderer from directive attribute', function () {
     spyOn($, 'jqplot');
     $.jqplot.SomeWeirdRenderer = 'Hello!';
     compile('data', 'renderer="someWeird"');
@@ -76,7 +76,38 @@ describe('uiChart Directive', function  () {
     );
   });
 
-  it('should override scope options renderer with directive attribute renderer', function() {
+  it('should override scope options renderer with directive attribute renderer', function () {
+    spyOn($, 'jqplot');
+    $.jqplot.SomeWeirdRenderer = 'Goodbye!';
+    compile('data', 'renderer="someWeird" options="myOpts"');
+    scope.data = [1,2,3];
+    scope.myOpts = {
+      seriesDefaults: {
+        renderer: 'Aloha!',
+        moo: 'czar'
+      },
+      foo: 'bar'
+    };
+    scope.$digest();
+
+    expect($.jqplot).toHaveBeenCalledWith(
+      jasmine.any(String),
+      scope.data,
+      {
+        seriesDefaults: {
+          renderer: 'Goodbye!',
+          moo: 'czar'
+        },
+        foo: 'bar'
+      }
+    );
+  });
+
+  it('should leave the element empty if no data is set', function () {
     // TODO
-  })
+  });
+
+  it('should remove the element contents if data goes away', function () {
+    // TODO
+  });
 });
