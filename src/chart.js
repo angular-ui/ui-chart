@@ -19,14 +19,6 @@ angular.module('ui.chart', [])
               throw 'Invalid ui.chart options attribute';
             }
           }
-          if (!angular.isUndefined(attrs.renderer)) {
-            if (angular.isUndefined(opts.seriesDefaults)) {
-              opts.seriesDefaults = {};
-            }
-            var r = attrs.renderer;
-            r = r.charAt(0).toUpperCase() + r.slice(1);
-            opts.seriesDefaults.renderer = $.jqplot[r + 'Renderer'];
-          }
 
           elem.jqplot(data, opts);
         };

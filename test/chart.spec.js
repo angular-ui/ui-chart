@@ -104,51 +104,6 @@ describe('uiChart Directive', function  () {
     );
   });
 
-  it('should accept renderer from directive attribute', function () {
-    spyOn($, 'jqplot');
-    $.jqplot.SomeWeirdRenderer = 'Hello!';
-    compile('data', 'renderer="someWeird"');
-    scope.data = [[1,2,3]];
-    scope.$digest();
-
-    expect($.jqplot).toHaveBeenCalledWith(
-      jasmine.any(String),
-      scope.data,
-      {
-        seriesDefaults: {
-          renderer: 'Hello!'
-        }
-      }
-    );
-  });
-
-  it('should override scope options renderer with directive attribute renderer', function () {
-    spyOn($, 'jqplot');
-    $.jqplot.SomeWeirdRenderer = 'Goodbye!';
-    compile('data', 'renderer="someWeird" options="myOpts"');
-    scope.data = [[1,2,3]];
-    scope.myOpts = {
-      seriesDefaults: {
-        renderer: 'Aloha!',
-        moo: 'czar'
-      },
-      foo: 'bar'
-    };
-    scope.$digest();
-
-    expect($.jqplot).toHaveBeenCalledWith(
-      jasmine.any(String),
-      scope.data,
-      {
-        seriesDefaults: {
-          renderer: 'Goodbye!',
-          moo: 'czar'
-        },
-        foo: 'bar'
-      }
-    );
-  });
-
   it('should leave the element empty if data is not an array', function () {
     spyOn($, 'jqplot').andCallThrough();
     compile('data');
