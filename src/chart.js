@@ -10,7 +10,6 @@ angular.module('ui.chart', [])
             return;
           }
 
-          console.log(data);
           elem.jqplot(data);
         }, true);
       }
