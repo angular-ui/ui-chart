@@ -13,8 +13,8 @@ angular.module('ui.chart', [])
           }
 
           var opts = {};
-          if (!angular.isUndefined(attrs.options)) {
-            opts = scope.$eval(attrs.options);
+          if (!angular.isUndefined(attrs.chartOptions)) {
+            opts = scope.$eval(attrs.chartOptions);
             if (!angular.isObject(opts)) {
               throw 'Invalid ui.chart options attribute';
             }
@@ -27,7 +27,7 @@ angular.module('ui.chart', [])
           renderChart();
         }, true);
 
-        scope.$watch(attrs.options, function () {
+        scope.$watch(attrs.chartOptions, function () {
           renderChart();
         });
       }

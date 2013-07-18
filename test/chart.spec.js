@@ -53,7 +53,7 @@ describe('uiChart Directive', function  () {
 
   it('should retrieve jqPlot options from scope', function () {
     spyOn($, 'jqplot');
-    compile('data', 'options="myOpts"');
+    compile('data', 'chart-options="myOpts"');
     scope.data = [[1,2,3]];
     scope.myOpts = {foo: 'bar'};
     scope.$digest();
@@ -67,7 +67,7 @@ describe('uiChart Directive', function  () {
 
   it('should throw an exception if options are not an object', function () {
     expect(function () {
-      compile('data', 'options="myOptsThatDontExistWhoops"');
+      compile('data', 'chart-options="myOptsThatDontExistWhoops"');
       scope.data = [[1,2,3]];
       scope.$digest();
     }).toThrow('Invalid ui.chart options attribute');
@@ -75,7 +75,7 @@ describe('uiChart Directive', function  () {
 
   it('should rerender the plot if options in scope change', function () {
     spyOn($, 'jqplot');
-    compile('data', 'options="myOpts"');
+    compile('data', 'chart-options="myOpts"');
     scope.data = [[1,2,3]];
     scope.myOpts = {
       hello: 'world'
