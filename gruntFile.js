@@ -5,7 +5,7 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'karma']);
-  
+
   var karmaConfig = function(configFile, customOptions) {
     var options = { configFile: configFile, keepalive: true };
     var travisOptions = process.env.TRAVIS && {
