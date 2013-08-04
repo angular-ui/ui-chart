@@ -1,4 +1,4 @@
-angular.module('myChartingApp', ['ui.chart'])
+angular.module('myChartingApp', ['ui.chart', 'prettifyDirective' ])
   .value('charting', {
     pieChartOptions: { 
       seriesDefaults: {
