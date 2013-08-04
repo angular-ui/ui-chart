@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8/>
+    <title>Angular UI ~ UI.Chart Doc</title>
+
+    <!-- Le css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/prettify.css"/>
+
+    <link rel="stylesheet" type="text/css" href="bower_components/jqplot/jquery.jqplot.css"/>
+
+
+</head>
+
+<body>
+
+  <!-- Le navbar
+  ================================================== -->
+  <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+          <div class="container">
+              <div class="dropdown pull-left">
+                  <a class="brand dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                      UI.Chart
+                      <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                      <li><a href="https://github.com/angular-ui/"><strong>Related Projects:</strong></a></li>
+                      <li class="divider"></li>
+                      <li><a href="http://angular-ui.github.io/">AngularUI</a></li>
+                      <li><a href="http://angular-ui.github.io/bootstrap/">UI Bootstrap</a></li>
+                      <li><a href="http://angular-ui.github.io/ng-grid/">Grid</a></li>
+                      <li><a href="https://github.com/angular-ui/AngularJs.tmbundle">AngularJS.tmbundle</a></li>
+                      <li><a href="http://angular-ui.github.io/ui-router/sample/">Router <span class="label label-success">New!</span></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div style="margin: 32px;"></div>
+
+  <!-- Le header
+  ================================================== -->
+  <header class="hero-unit" id="overview">
+      <div class="container">
+
+          <h1>UI.Chart</h1>
+
+          <p>Add a jqPlot chart to your Angular application.</p>
+
+          <p class="btn-group">
+              <a class="btn" href="https://github.com/angular-ui/ui-chart"><i class="icon-github"></i> Code on Github</a>
+              <a class="btn btn-primary" href="https://github.com/angular-ui/ui-chart/tree/gh-pages/build">
+                  <i class="icon-download-alt icon-white"></i> Download <small>(0.0.1)</small>
+              </a>
+          </p>
+      </div>
+      <div class="bs-docs-social">
+          <div class="container">
+              <ul class="bs-docs-social-buttons">
+                  <li>
+                      <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-chart&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                  </li>
+                  <li>
+                      <iframe src="http://ghbtns.com/github-btn.html?user=angular-ui&amp;repo=ui-chart&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                  </li>
+                  <li>
+                      <!-- Place this tag where you want the +1 button to render. -->
+                      <div class="g-plusone" data-size="medium"></div>
+
+                      <!-- Place this tag after the last +1 button tag. -->
+                      <script type="text/javascript">
+                          (function () {
+                              var po = document.createElement('script');
+                              po.type = 'text/javascript';
+                              po.async = true;
+                              po.src = 'https://apis.google.com/js/plusone.js';
+                              var s = document.getElementsByTagName('script')[0];
+                              s.parentNode.insertBefore(po, s);
+                          })();
+                      </script>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </header>
+
+  <!-- Le main
+  ================================================== -->
+  <div class="container">
+
+    <section id="chart" ng-app="myChartingApp" ng-controller="DemoCtrl">
+
+  <h1>Demo</h1>
+
+  <div ui-chart="someData" chart-options="myChartOpts" ></div>
+
+  <h3>How?</h3>
+    <pre class="prettyprint">
+&lt;section ng-app=&quot;myChartingApp&quot; ng-controller=&quot;DemoCtrl&quot;&gt;
+  &lt;div ui-chart=&quot;someData&quot; chart-options=&quot;myChartOpts&quot; &gt;&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+  angular.module('myChartingApp', ['ui.chart'])
+    .value('charting', {
+      pieChartOptions: {
+        seriesDefaults: {
+          // Make this a pie chart.
+          renderer: jQuery.jqplot.PieRenderer,
+          rendererOptions: {
+            // Put data labels on the pie slices.
+            // By default, labels show the percentage of the slice.
+            showDataLabels: true
+          }
+        },
+        legend: { show:true, location: 'e' }
+      }
+    })
+    .controller('DemoCtrl', function ($scope, charting) {
+      $scope.someData = [[
+        ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14],
+        ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
+      ]];
+
+      $scope.myChartOpts = charting.pieChartOptions;
+    });
+&lt;/script&gt;
+</pre>
+</section>
+
+  </div>
+
+  <!-- Le javascript
+  ================================================== -->
+
+  <script src="assets/vendor/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap.min.js"></script>
+
+  <script src="assets/vendor/prettify.js"></script>
+
+  <script src="assets/vendor/angular.min.js"></script>
+  <script src="core/prettifyDirective.js"></script>
+
+  <script src="bower_components/jqplot/jquery.jqplot.js"></script>
+  <script src="bower_components/jqplot/plugins/jqplot.pieRenderer.js"></script>
+  <script src="build/ui-chart.js"></script>
+
+  <script>
+    angular.module('myChartingApp', ['ui.chart', 'prettifyDirective' ])
+  .value('charting', {
+    pieChartOptions: { 
+      seriesDefaults: {
+        // Make this a pie chart.
+        renderer: jQuery.jqplot.PieRenderer, 
+        rendererOptions: {
+          // Put data labels on the pie slices.
+          // By default, labels show the percentage of the slice.
+          showDataLabels: true
+        }
+      }, 
+      legend: { show:true, location: 'e' }
+    }
+  })
+  .controller('DemoCtrl', function ($scope, charting) {
+    $scope.someData = [[
+      ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14], 
+      ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
+    ]];
+
+    $scope.myChartOpts = charting.pieChartOptions;
+  });
+  </script>
+
+</body>
+
+</html>
