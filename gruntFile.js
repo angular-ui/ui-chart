@@ -7,8 +7,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'karma']);
+  grunt.registerTask('default', ['jshint', 'karma:unit']);
   grunt.registerTask('build-doc', ['uglify', 'copy']);
+  grunt.registerTask('server', ['karma:start']);
 
   var testConfig = function (configFile, customOptions) {
     var options = { configFile: configFile, singleRun: true };
