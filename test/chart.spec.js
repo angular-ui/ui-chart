@@ -73,6 +73,14 @@ describe('uiChart Directive', function  () {
     }).toThrow('Invalid ui.chart options attribute');
   });
 
+  it('should throw an exception if callbacks are not an object', function () {
+    expect(function () {
+      compile('data', 'callbacks="myNonExistentCallbacks"');
+      scope.data = [[1,2,3]];
+      scope.$digest();
+    }).toThrow('Invalid ui.chart callbacks attribute');
+  });
+
   it('should rerender the plot if options in scope change', function () {
     spyOn($, 'jqplot');
     compile('data', 'chart-options="myOpts"');
