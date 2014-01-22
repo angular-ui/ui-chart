@@ -83,10 +83,10 @@ module.exports = function (grunt) {
       main: {
         files: [
           {src: ['src/chart.js'], dest: '<%= dist %>/build/<%= meta.view.repoName %>.js', filter: 'isFile'},
-          {src: ['<%= bower %>/jqplot/jquery.jqplot.css'], dest: '<%= dist %>/<%= bower %>/jqplot/jquery.jqplot.css', filter: 'isFile'},
+          {src: ['<%= bower %>/jqplot-bower/dist/jquery.jqplot.css'], dest: '<%= dist %>/<%= bower %>/jqplot/jquery.jqplot.css', filter: 'isFile'},
           //{src: ['<%= bower %>/jquery/jquery.min.js'], dest: '<%= dist %>/<%= bower %>/jquery/jquery.min.js', filter: 'isFile'},
-          {src: ['<%= bower %>/jqplot/jquery.jqplot.js'], dest: '<%= dist %>/<%= bower %>/jqplot/jquery.jqplot.js', filter: 'isFile'},
-          {src: ['<%= bower %>/jqplot/plugins/jqplot.pieRenderer.js'], dest: '<%= dist %>/<%= bower %>/jqplot/plugins/jqplot.pieRenderer.js', filter: 'isFile'}
+          {src: ['<%= bower %>/jqplot-bower/dist/jquery.jqplot.js'], dest: '<%= dist %>/<%= bower %>/jqplot/jquery.jqplot.js', filter: 'isFile'},
+          {src: ['<%= bower %>/jqplot-bower/dist/plugins/jqplot.pieRenderer.js'], dest: '<%= dist %>/<%= bower %>/jqplot/plugins/jqplot.pieRenderer.js', filter: 'isFile'}
         ]
       },
       template : {
