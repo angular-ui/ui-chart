@@ -19,10 +19,13 @@
   "dependencies": {
     "angular": "~1.x",
     "jquery": "~2.x",
-    "jqplot": "https://bitbucket.org/cleonello/jqplot/downloads/jquery.jqplot.1.0.8r1250.tar.gz"
+    "jqplot-bower": "1.0.8"
   },
   "devDependencies": {
     "angular-mocks": "~1.x",
     "angular-ui-docs": "angular-ui/angular-ui-docs"
+  },
+  "resolutions": {
+    "jquery": "~2.x"
   }
 }
