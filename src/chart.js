@@ -7,9 +7,14 @@ angular.module('ui.chart', [])
       link: function (scope, elem, attrs) {
         var renderChart = function () {
           var data = scope.$eval(attrs.uiChart);
-          elem.html('');
+
           if (!angular.isArray(data)) {
             return;
+          }
+
+          var id = elem.attr('id');
+          if (angular.isUndefined(id)) {
+              throw 'Invalid ui.graph id attribute';
           }
 
           var opts = {};
@@ -20,7 +25,18 @@ angular.module('ui.chart', [])
             }
           }
 
-          elem.jqplot(data, opts);
+          $(elem).unbind("jqplotDataClick");
+          $.jqplot(id, data, opts).destroy();
+          $(elem).html('');
+          $.jqplot(id, data, opts);
+
+          var click_callback = scope.$eval(attrs.chartClick);
+          if (angular.isFunction(click_callback)) {
+            return $(elem).bind('jqplotDataClick', function(ev, seriesIndex, pointIndex, data) {
+              return click_callback(ev, seriesIndex, pointIndex, data);
+            });
+          }
+          
         };
 
         scope.$watch(attrs.uiChart, function () {
