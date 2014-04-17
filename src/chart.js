@@ -20,7 +20,7 @@ angular.module('ui.chart', [])
             }
           }
 
-          elem.jqplot(data, opts);
+          $(elem).jqplot(data, opts);         
         };
 
         scope.$watch(attrs.uiChart, function () {
