@@ -41,12 +41,11 @@ Add the chart module as a dependency to your application module:
 
 Apply the directive to your div elements as an element, attribute, class, or comment:
 
-    <ui-chart="data1"></ui-chart>
-    <div ui-chart="data2"></div>
-    <div class="ui-chart; data3"></div>
-    <!-- directive: ui-chart data4 -->
+    <ui-chart="data1" id="some-id"></ui-chart>
+    <div ui-chart="data2" id="some-id"></div>
+    <div class="ui-chart; data3" id="some-id"></div>
 
-Your data to pass to `$.jqplot` will be the evaluated value of the `ui-chart` attribute, while the options to pass to `$.jqplot` will be the evaluated value of the `chart-options` attribute - the evaluations are done in scope.
+Your data to pass to `$.jqplot` will be the evaluated value of the `ui-chart` attribute, while the options to pass to `$.jqplot` will be the evaluated value of the `chart-options` attribute - the evaluations are done in scope. It is necessary to specify `id` attribute because it will be used by `$.jqplot`. It is possible to pass a function to `chart-click` attribute that will be called after click event on any node in the plot
 
 # Options
 
