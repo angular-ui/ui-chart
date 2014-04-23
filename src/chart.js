@@ -1,5 +1,5 @@
 angular.module('ui.chart', [])
-  .directive('uiChart', function () {
+  .directive('uiChart', function ($window, $timeout) {
     return {
       restrict: 'EACM',
       template: '<div></div>',
@@ -20,8 +20,14 @@ angular.module('ui.chart', [])
             }
           }
 
+          elem.empty(); //delete children
           elem.jqplot(data, opts);
+          //make sure there are children or maybe .jqplot didn't render
+          if (!elem.children().length) { $timeout(renderChart, 100); }
         };
+        
+        //responsive friendly
+        angular.element($window).bind('resize', renderChart);
 
         scope.$watch(attrs.uiChart, function () {
           renderChart();
