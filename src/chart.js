@@ -28,9 +28,8 @@ angular.module('ui.chart', [])
           });
           
           elem.bind('jqplotDragStop', function () {             
-              scope.$apply();
+            scope.$apply();
           });
-          
         };
 
         scope.$watch(attrs.uiChart, function () {
