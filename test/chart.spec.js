@@ -130,4 +130,21 @@ describe('uiChart Directive', function  () {
     expect(element.html()).toBe('');
     expect(element[0].children.length).toBe(0);
   });
+  
+  it('should update data', function () {
+    compile('data');
+    scope.data = [
+      [[1, 2], [3, 4]]
+    ];
+    scope.$digest();
+
+    element.trigger('jqplotSeriesPointChange', [0, 0, [4, 5], [4, 5]]);
+    expect(scope.data[0][0][0]).toBe(4);
+    expect(scope.data[0][0][1]).toBe(5);
+    
+    spyOn(scope, '$apply');
+    
+    element.trigger('jqplotDragStop');
+    expect(scope.$apply).toHaveBeenCalled();
+  });
 });
