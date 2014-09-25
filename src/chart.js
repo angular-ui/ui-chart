@@ -21,6 +21,16 @@ angular.module('ui.chart', [])
           }
 
           elem.jqplot(data, opts);
+          elem.bind('jqplotSeriesPointChange', 
+            function (e, series, point, values) {
+              data[series][point][0] = values[0];
+              data[series][point][1] = values[1];
+          });
+          
+          elem.bind('jqplotDragStop', function () {             
+              scope.$apply();
+          });
+          
         };
 
         scope.$watch(attrs.uiChart, function () {
