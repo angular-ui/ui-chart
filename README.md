@@ -57,20 +57,44 @@ This plugin supports usage of any option present for a chart in jqplot.  This va
     angular.module('myApp')
       .controller('DemoCtrl', function ($scope) {
         $scope.data = [[
-          ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14], 
+          ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14],
           ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
         ]];
 
-        $scope.chartOptions = { 
+        $scope.chartOptions = {
           seriesDefaults: {
             // Make this a pie chart.
-            renderer: jQuery.jqplot.PieRenderer, 
+            renderer: jQuery.jqplot.PieRenderer,
             rendererOptions: {
               // Put data labels on the pie slices.
               // By default, labels show the percentage of the slice.
               showDataLabels: true
             }
-          }, 
+          },
           legend: { show:true, location: 'e' }
+        };
+      });
+
+# Callbacks
+
+Configure any callbacks supported by jqplot beside the chartOptions on the scope and register them on the directive. See [PieChart Docs](http://www.jqplot.com/docs/files/plugins/jqplot-pieRenderer-js.html) for callback docs.
+
+    <ui-chart="data" chart-options="chartOptions" callbacks="cllbcks"></ui-chart>
+
+    angular.module('myApp')
+      .controller('DemoCtrl', function ($scope) {
+        $scope.data = [[
+          ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14],
+          ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
+        ]];
+
+        $scope.cllbcks = {
+          jqplotDataClick: function (ev, seriesIndex, pointIndex, data) {
+            // do something on click events
+          }
+        };
+
+        $scope.chartOptions = {
+          // .... chartOptions as described above
         };
       });
